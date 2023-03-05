@@ -1,5 +1,64 @@
 .App {
   text-align: center;
+
+}
+
+body {
+  background-color: pink;
+}
+
+.Numbers {
+  display: block;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+
+.Target {
+  margin-bottom: 40px;
+}
+
+#targetNum {
+  font-size: 25px;
+}
+
+.Starting {
+  margin-bottom: 40px;
+}
+
+#startNum {
+  font-size: 25px;
+}
+
+#ops {
+  font-size: 25px;
+}
+
+.Operations {
+  margin-bottom: 40px;
+}
+
+.Title {
+  margin-bottom: 50px;
+  color: black;
+}
+
+.Win {
+  font-weight: bolder;
+}
+
+.Operations {
+  flex-direction: row;
+  font-size: 20px;
+  border-color: red;
+  border-radius: 20px;
+}
+ 
+#playAgain {
+  font-size: 20px;
+ 
+
+
 }
 
 .App-logo {
