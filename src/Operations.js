@@ -1,87 +1,105 @@
 
-let targText = document.getElementById("targetNum")
-let startText = document.getElementById("startNum")
-let operations = document.getElementById("ops")
+import React, {useState, useEffect} from 'react';
 
-let winStage = document.getElementById("Win")
-let playAgain = document.getElementById("playAgain")
+function Game() {
+    const [targVal, setTargVal] = useState(Math.floor(Math.random() * 100));
+    const [startVal, setStartVal] = useState(Math.floor(Math.random() * 100));
+    const [currOps, setCurrOps] = useState(0);
+    const [winStage, setWinStage] = useState("");
 
 
-let currOps = 0
+    function addOne() {
+        if (startVal < 100) {
+            setStartVal(startVal + 1)
+            setCurrOps(currOps + 1)
 
-var targVal = Math.floor(Math.random() * 100)
-var startVal = Math.floor(Math.random() * 100)
-
-function addOne() {
-    if (startVal < 100) {
-        startVal++
-        currOps++
-        checkMatch() 
+        }    
     }
-    startText.textContent = startVal
-    operations.textContent = currOps
-}
 
-function subtractOne() {
-    if (startVal > 0) {
-        startVal--
-        currOps++
-        checkMatch() 
+    function subtractOne() {
+        if (startVal > 0) {
+            setStartVal(startVal - 1)
+            setCurrOps(currOps + 1)
+        }
+      
     }
-    startText.textContent = startVal
-    operations.textContent = currOps
 
-}
-
-function multiplyBy2() {
-    if (startVal * 2 < 100) {
-        startVal *= 2
-        currOps++
-        checkMatch() 
+    function multiplyBy2() {
+        if (startVal * 2 > 100) {
+            setStartVal(100)
+        } else {
+            setStartVal(startVal * 2)
+        }
+        setCurrOps(currOps + 1)
+        
+       
     }
-    startText.textContent = startVal
-    operations.textContent = currOps
-}
 
-function divideBy2() {
-    if (Math.floor(startVal / 2) > 0) {
-        startVal = Math.floor(startVal / 2)
-        currOps++
-        checkMatch() 
+    function divideBy2() {
+        if (Math.floor(startVal / 2) > 0) {
+            setStartVal(Math.floor(startVal / 2))
+            setCurrOps(currOps + 1)
+        }
     }
-    startText.textContent = startVal
-    operations.textContent = currOps
-}
+    
 
-targText.textContent = targVal
-startText.textContent = startVal
+    function checkMatch() {
 
-function checkMatch() {
-  if (startVal === targVal) {
-    console.log("You have reach the target value in " + operations + " operations.")
-    winStage.textContent = "Congratulations! You have reached the target value in " + currOps + " operation(s). Can you do better?"
-  }
+        console.log("Beg S " + startVal)
+        console.log("Beg T " + targVal)
 
-}
+        console.log(startVal - targVal)
 
-function restartGame() {
-    winStage.textContent = ""
-    currOps = 0
-    targVal = Math.floor(Math.random() * 100)
-    startVal = Math.floor(Math.random() * 100)
-    operations.textContent = 0
+        if (startVal === targVal) {
+            setWinStage("Congratulations! You have reached the target value in " + currOps + " operation(s). Can you do better?")
+        }
+    }
 
-    startText.textContent = startVal
-    targText.textContent = targVal
-}
+    useEffect(() => {
+        setWinStage("")
+        checkMatch();
+    }, [startVal]);
 
-export {addOne, subtractOne, multiplyBy2, divideBy2, restartGame};
+  
 
+    function restartGame() {
+       
+        setTargVal(Math.floor(Math.random() * 100))
+        setStartVal(Math.floor(Math.random() * 100))
 
+        if (checkMatch()) {
+            setTargVal(Math.floor(Math.random() * 100))
+            setStartVal(Math.floor(Math.random() * 100))
+        }
+        setCurrOps(0)
+    }
+ 
+    return (    
+        <div>
+            <div className = "Target"> 
+                <p>Target Number: </p>
+                <p id = "targetNum"> {targVal} </p>
+            </div>
 
+            <div className = "Starting"> 
+                <p id = "start">Starting Number:   </p>
+                <p id = "startNum">{startVal} </p>
+            </div>
 
-   
+            <p id = "numOper">Number of Operations: </p>
+            <p id = "ops"> {currOps}</p>
 
+            <button className = "Operations" onClick={addOne}>+1</button>
+            <button className = "Operations" onClick={subtractOne}>-1</button>
+            <button className = "Operations" onClick={multiplyBy2}>*2</button>
+            <button className = "Operations" onClick={divideBy2}>÷2</button>
+            <h2 id = "Win"> {winStage} </h2>
+            <button id = "playAgain"  onClick={restartGame}>Play Again</button>
+      
+        </div>
+      );
+    }
+    export default Game;
    
 
     
