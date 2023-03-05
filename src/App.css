@@ -15,7 +15,7 @@ body {
 
 
 .Target {
-  
+  font-size: large;
   margin-bottom: 40px;
 }
 
@@ -27,6 +27,8 @@ body {
 }
 
 .Starting {
+  font-size: large;
+
   margin-bottom: 40px;
 }
 
@@ -41,9 +43,11 @@ body {
   font-size: 30px;
 }
 
-.Operations {
-  margin-bottom: 40px;
+#numOper {
+  font-size: large;
+
 }
+
 
 .Title {
   margin-bottom: 50px;
@@ -60,6 +64,7 @@ body {
   font-size: 20px;
   border-color: red;
   border-radius: 20px;
+  margin-bottom: 40px;
 }
  
 #playAgain {
